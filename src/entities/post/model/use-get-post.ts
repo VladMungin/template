@@ -1,4 +1,4 @@
-import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
+import { queryOptions, useQuery } from '@tanstack/react-query'
 import { getPost } from '@/entities/post/model/_request.ts'
 
 export const postQueryOptions = (postId: number) =>
@@ -7,4 +7,4 @@ export const postQueryOptions = (postId: number) =>
     queryFn: () => getPost(postId),
   })
 
-export const useGetPost = (postId: number) => useSuspenseQuery(postQueryOptions(postId))
+export const useGetPost = (postId: number) => useQuery(postQueryOptions(postId))
