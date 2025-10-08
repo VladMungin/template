@@ -1,6 +1,5 @@
 import {StrictMode} from 'react'
 import ReactDOM from 'react-dom/client'
-
 import reportWebVitals from './reportWebVitals.ts'
 import {Providers} from "@/app/providers/providers.tsx";
 import {router} from "@/shared/config";
