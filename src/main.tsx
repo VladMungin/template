@@ -1,9 +1,8 @@
-import {StrictMode} from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import reportWebVitals from './reportWebVitals.ts'
-import {Providers} from "@/app/providers/providers.tsx";
-import {router} from "@/shared/config";
-
+import { Providers } from '@/app/providers/providers.tsx'
+import { router } from '@/shared/config'
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -16,8 +15,8 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <Providers/>
-    </StrictMode>,
+      <Providers />
+    </StrictMode>
   )
 }
 

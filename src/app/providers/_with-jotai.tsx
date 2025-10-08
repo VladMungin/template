@@ -1,6 +1,6 @@
-import type {ReactNode} from "react";
-import {Provider} from "jotai";
+import type { ReactNode } from 'react'
+import { Provider } from 'jotai'
 
-export const WithJotai = ({children}: {children: ReactNode}) => {
-	return <Provider>{children}</Provider>
+export const WithJotai = ({ children }: { children: ReactNode }) => {
+  return <Provider>{children}</Provider>
 }
