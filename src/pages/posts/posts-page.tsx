@@ -8,7 +8,6 @@ import { Spinner } from '@/shared/ui'
 const PostsPage = () => {
   const postsQuery = useGetPosts()
   const posts = postsQuery.data
-  const isLoading = postsQuery.isLoading
 
   const lastUpdatedPost = useAtomValue(lastUpdatedPostAtom)
 
@@ -23,7 +22,6 @@ const PostsPage = () => {
           'ОБНОВИТЕ КАКОЙ НИБУДЬ ПОСТ И УВИДИТЕ ЕГО ID ЗДЕСЬ'
         )}
       </h3>
-      {isLoading ? <Spinner /> : null}
       <ul className="flex flex-col">
         {posts?.map(post => (
           <PostItem post={post} key={post.id} />
@@ -37,5 +35,6 @@ export const homeRoute = createRoute({
   getParentRoute: () => Layout,
   path: '/',
   component: PostsPage,
-  // loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions), - это юзаем если хотим чтобы компонент не отображался до выполнения запроса
+  // loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions), //- это юзаем если хотим чтобы компонент не отображался до выполнения запроса
+  pendingComponent: () => <Spinner />,
 })

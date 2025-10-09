@@ -1,4 +1,4 @@
-import { queryOptions, useQuery } from '@tanstack/react-query'
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query'
 import { getPosts } from '@/entities/post/model/_request.ts'
 
 export const postsQueryOptions = queryOptions({
@@ -6,4 +6,4 @@ export const postsQueryOptions = queryOptions({
   queryFn: getPosts,
 })
 
-export const useGetPosts = () => useQuery(postsQueryOptions)// можно заменить на useSuspenseQuery - это позволит предзагружать данные во время рендерига
+export const useGetPosts = () => useSuspenseQuery(postsQueryOptions) // можно заменить на useSuspenseQuery - это позволит предзагружать данные во время рендерига
