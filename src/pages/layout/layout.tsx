@@ -8,9 +8,13 @@ export const Layout = createRootRouteWithContext<{
   head: () => ({
     meta: [],
   }),
-  component: () => (
-    <div className="container mx-auto mt-5">
-      <Outlet />
-    </div>
-  ),
+  component: () => {
+    return (
+      <div className="flex">
+        <main className="container mx-auto mt-5">
+          <Outlet />
+        </main>
+      </div>
+    )
+  },
 })

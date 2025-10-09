@@ -9,7 +9,7 @@ export const PostPage = () => {
 
   return (
     <div className="flex gap-4 items-center">
-      <p>{postQuery.data.title}</p>
+      <p>{postQuery.data?.title}</p>
       <Button>
         <Link to={'/edit/' + postId}>Edit</Link>
       </Button>
