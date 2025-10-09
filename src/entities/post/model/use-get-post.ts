@@ -7,4 +7,4 @@ export const postQueryOptions = (postId: number) =>
     queryFn: () => getPost(postId),
   })
 
-export const useGetPost = (postId: number) => useQuery(postQueryOptions(postId))
+export const useGetPost = (postId: number) => useQuery(postQueryOptions(postId)) // можно заменить на useSuspenseQuery - это позволит предзагружать данные во время рендерига

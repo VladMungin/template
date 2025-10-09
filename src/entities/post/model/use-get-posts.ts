@@ -6,4 +6,4 @@ export const postsQueryOptions = queryOptions({
   queryFn: getPosts,
 })
 
-export const useGetPosts = () => useQuery(postsQueryOptions)
+export const useGetPosts = () => useQuery(postsQueryOptions)// можно заменить на useSuspenseQuery - это позволит предзагружать данные во время рендерига
