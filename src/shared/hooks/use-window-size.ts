@@ -20,7 +20,7 @@ export const useWindowSize = () => {
         width: window.innerWidth,
         height: window.innerHeight,
         isMobile: window.innerWidth <= MOBILE_WIDTH,
-        isDesktop: window.innerWidth >= MOBILE_WIDTH
+        isDesktop: window.innerWidth >= MOBILE_WIDTH,
       })
     }
 
