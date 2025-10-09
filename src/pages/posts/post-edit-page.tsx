@@ -18,7 +18,7 @@ const PostEditPage = () => {
   const form = useForm<PostEditForm>({
     defaultValues: {
       id: postId.toString(),
-      title: postQuery.data.title,
+      title: postQuery.data?.title,
     },
   })
 

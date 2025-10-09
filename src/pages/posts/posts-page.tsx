@@ -15,7 +15,7 @@ const PostsPage = () => {
     <>
       <h3 className="text-red-500 text-3xl mb-5">
         {lastUpdatedPost?.id ? (
-          <Link to={'/' + lastUpdatedPost?.id} className='underline'>
+          <Link to={'/' + lastUpdatedPost?.id} className="underline">
             Последний обновленный пост: {lastUpdatedPost?.id}
           </Link>
         ) : (
