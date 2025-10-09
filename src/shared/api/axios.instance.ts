@@ -1,5 +1,6 @@
 import axios from 'axios'
+import { getEnv } from '@/shared/config'
 
 export const baseQuery = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com',
+  baseURL: getEnv().BASE_URL,
 })
