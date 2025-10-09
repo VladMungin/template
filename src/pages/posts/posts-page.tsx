@@ -4,14 +4,13 @@ import { lastUpdatedPostAtom, useGetPosts } from '@/entities/post'
 import { PostItem } from '@/entities/post/ui'
 import { useAtomValue } from 'jotai'
 import { Spinner } from '@/shared/ui'
-import { useWindowSize } from '@/shared/hooks'
 
 const PostsPage = () => {
   const postsQuery = useGetPosts()
   const posts = postsQuery.data
+  const isLoading = postsQuery.isLoading
 
   const lastUpdatedPost = useAtomValue(lastUpdatedPostAtom)
-
 
   return (
     <>
@@ -24,7 +23,7 @@ const PostsPage = () => {
           'ОБНОВИТЕ КАКОЙ НИБУДЬ ПОСТ И УВИДИТЕ ЕГО ID ЗДЕСЬ'
         )}
       </h3>
-      {postsQuery.isLoading ? <Spinner /> : null}
+      {isLoading ? <Spinner /> : null}
       <ul className="flex flex-col">
         {posts?.map(post => (
           <PostItem post={post} key={post.id} />
@@ -38,5 +37,5 @@ export const homeRoute = createRoute({
   getParentRoute: () => Layout,
   path: '/',
   component: PostsPage,
-  // loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions),
+  // loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions), - это юзаем если хотим чтобы компонент не отображался до выполнения запроса
 })
