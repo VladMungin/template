@@ -4,12 +4,14 @@ import { lastUpdatedPostAtom, useGetPosts } from '@/entities/post'
 import { PostItem } from '@/entities/post/ui'
 import { useAtomValue } from 'jotai'
 import { Spinner } from '@/shared/ui'
+import { useWindowSize } from '@/shared/hooks'
 
 const PostsPage = () => {
   const postsQuery = useGetPosts()
   const posts = postsQuery.data
 
   const lastUpdatedPost = useAtomValue(lastUpdatedPostAtom)
+
 
   return (
     <>
