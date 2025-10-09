@@ -3,6 +3,7 @@ import { Layout } from '@/pages'
 import { lastUpdatedPostAtom, useGetPosts } from '@/entities/post'
 import { PostItem } from '@/entities/post/ui'
 import { useAtomValue } from 'jotai'
+import { Suspense } from 'react'
 import { Spinner } from '@/shared/ui'
 
 const PostsPage = () => {
@@ -34,7 +35,12 @@ const PostsPage = () => {
 export const homeRoute = createRoute({
   getParentRoute: () => Layout,
   path: '/',
-  component: PostsPage,
+  component: () => (
+    <Suspense fallback={<Spinner />}>
+      
+      {/* Если мы хотим показать загрузчик*/}
+      <PostsPage />
+    </Suspense>
+  ),
   // loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions), //- это юзаем если хотим чтобы компонент не отображался до выполнения запроса
-  pendingComponent: () => <Spinner />,
 })

@@ -1,7 +1,6 @@
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import type { QueryClient } from '@tanstack/query-core'
 import '@/app/styles/app.css'
-import { Spinner } from '@/shared/ui'
 
 export const Layout = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -18,5 +17,4 @@ export const Layout = createRootRouteWithContext<{
       </div>
     )
   },
-  pendingComponent: () => <Spinner />,
 })
