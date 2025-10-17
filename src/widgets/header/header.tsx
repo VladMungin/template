@@ -12,14 +12,7 @@ export const Header = () => {
 
   const borderRadius = useTransform(scrollY, [0, 100], [24, 0])
 
-  // const background = useTransform(
-  //   scrollY,
-  //   [0, 100],
-  //   [
-  //     isDark ? 'rgba(15, 23, 42, 0.8)' : 'rgba(255, 255, 255, 0.8)',
-  //     isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-  //   ]
-  // )
+
 
   const borderColor = useTransform(
     scrollY,
@@ -49,7 +42,7 @@ export const Header = () => {
       style={{
         borderBottomLeftRadius: borderRadius,
         borderBottomRightRadius: borderRadius,
-        
+
         borderBottom: '1px solid',
         borderColor,
         boxShadow,
@@ -89,7 +82,7 @@ export const Header = () => {
           {/*  тут ссылки */}
           <motion.div
             className="flex items-center space-x-3 cursor-pointer group"
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.11 }}
             whileTap={{ scale: 0.98 }}
           >
             <Button
