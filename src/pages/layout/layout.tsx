@@ -1,6 +1,7 @@
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import type { QueryClient } from '@tanstack/query-core'
 import '@/app/styles/app.css'
+import { Header } from '@/widgets/header/header.tsx'
 
 export const Layout = createRootRouteWithContext<{
   queryClient: QueryClient
@@ -11,7 +12,8 @@ export const Layout = createRootRouteWithContext<{
   component: () => {
     return (
       <div className="flex">
-        <main className="container mx-auto mt-5">
+        <Header />
+        <main className="container mx-auto mt-20">
           <Outlet />
         </main>
       </div>

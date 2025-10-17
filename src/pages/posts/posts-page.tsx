@@ -37,7 +37,6 @@ export const homeRoute = createRoute({
   path: '/',
   component: () => (
     <Suspense fallback={<Spinner />}>
-      
       {/* Если мы хотим показать загрузчик*/}
       <PostsPage />
     </Suspense>
