@@ -1,3 +1,18 @@
+# Для нашей разработки
+
+Версия ноды желательно 22
+
+Для старта 
+
+```bash
+npm install
+npm run dev
+```
+
+
+# Ниже мб не все настроено
+
+
 Welcome to your new TanStack app!
 
 # Getting Started

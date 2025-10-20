@@ -8,7 +8,7 @@ import { Spinner } from '@/shared/ui'
 
 const PostsPage = () => {
   const postsQuery = useGetPosts()
-  const posts = postsQuery.data
+  const posts = postsQuery.data || [];
 
   const lastUpdatedPost = useAtomValue(lastUpdatedPostAtom)
 
@@ -24,7 +24,7 @@ const PostsPage = () => {
         )}
       </h3>
       <ul className="flex flex-col">
-        {posts?.map(post => (
+        {posts.map(post => (
           <PostItem post={post} key={post.id} />
         ))}
       </ul>
