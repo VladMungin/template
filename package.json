@@ -28,6 +28,7 @@
     "jotai": "^2.15.0",
     "lucide-react": "^0.545.0",
     "react": "^19.2.0",
+    "react-cookie": "^8.0.1",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.64.0",
     "tailwind-merge": "^3.3.1",

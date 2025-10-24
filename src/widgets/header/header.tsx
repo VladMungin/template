@@ -5,7 +5,7 @@ import { Button } from '@/shared/ui'
 import { Moon, Sun } from 'lucide-react'
 import { Link, useNavigate } from '@tanstack/react-router'
 import { useAtomValue } from 'jotai'
-import { isAuthenticatedAtom, userAtom, useLogout } from '@/entities/auth'
+import { isAuthenticatedAtom, useLogout, userAtom } from '@/entities/auth'
 
 export const Header = () => {
   const { scrollY } = useScroll()
@@ -68,25 +68,25 @@ export const Header = () => {
             <motion.div
               className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                 isDark
-                  ? 'bg-gradient-to-br from-blue-400 via-purple-400 to-cyan-400'
-                  : 'bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500'
+                  ? 'bg-[linear-gradient(to_right,white,#F37022)]'
+                  : 'bg-[linear-gradient(to_right,white,#F37022)]'
               }`}
               whileHover={{ rotate: 5 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <span className={`font-bold text-sm ${isDark ? 'text-gray-900' : 'text-white'}`}>
-                YB
+              <span className={`flex font-bold text-sm ${isDark ? 'text-gray-900' : 'text-white'}`}>
+                AL
               </span>
             </motion.div>
             <motion.span
-              className={`text-2xl font-bold bg-gradient-to-r bg-clip-text text-transparent ${
+              className={`flex text-2xl font-bold bg-gradient-to-r bg-clip-text text-transparent ${
                 isDark ? 'from-blue-200 to-cyan-200' : 'from-gray-900 to-gray-700'
               }`}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
             >
-              YourBrand
+              <p className="text-[#F37022]">Axenix</p>Live
             </motion.span>
           </motion.div>
           {/* Навигация */}

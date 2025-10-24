@@ -1,27 +1,22 @@
 import { useEffect } from 'react'
-import { useSetAtom } from 'jotai'
-import { userAtom, accessTokenAtom } from '@/entities/auth'
+import { useLocalStorage } from '@/shared/hooks'
+import { useCookies } from 'react-cookie'
 
 export const WithAuth = ({ children }: { children: React.ReactNode }) => {
-  const setUser = useSetAtom(userAtom)
-  const setAccessToken = useSetAtom(accessTokenAtom)
+  const { value: savedUser, set: setUser, remove } = useLocalStorage('user')
+  const [cookies, setCookie, removeCookie] = useCookies(['accessToken'])
 
   useEffect(() => {
-    // Восстанавливаем состояние авторизации из localStorage
-    const savedToken = localStorage.getItem('accessToken')
-    const savedUser = localStorage.getItem('user')
-
-    if (savedToken && savedUser) {
+    if (cookies.accessToken && savedUser) {
       try {
-        setAccessToken(savedToken)
-        setUser(JSON.parse(savedUser))
+        setCookie('accessToken', cookies.accessToken)
+        setUser(savedUser)
       } catch (error) {
-        // Если данные повреждены, очищаем их
-        localStorage.removeItem('accessToken')
-        localStorage.removeItem('user')
+        removeCookie('accessToken')
+        remove()
       }
     }
-  }, [setUser, setAccessToken])
+  }, [setUser, setCookie])
 
   return <>{children}</>
 }
