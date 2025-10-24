@@ -42,7 +42,7 @@ export function RegisterForm() {
         <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>
       )}
       <Controller
-        render={({field}) => (
+        render={({ field }) => (
           <Input
             {...field}
             type="password"
