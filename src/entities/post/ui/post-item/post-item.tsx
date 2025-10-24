@@ -13,7 +13,7 @@ export const PostItem = ({ post }: PostItemProps) => {
     >
       <p>{post.id}</p>
       <Link to={`${post.id}`} className="w-full block gap-2">
-        {post.title}
+        {post.title} adsasdadsa
       </Link>
     </li>
   )
