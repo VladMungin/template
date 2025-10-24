@@ -3,16 +3,26 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useTheme } from '@/app/providers/_with-theme.tsx'
 import { Button } from '@/shared/ui'
 import { Moon, Sun } from 'lucide-react'
+import { Link, useNavigate } from '@tanstack/react-router'
+import { useAtomValue } from 'jotai'
+import { isAuthenticatedAtom, userAtom, useLogout } from '@/entities/auth'
 
 export const Header = () => {
   const { scrollY } = useScroll()
   const { theme, setTheme } = useTheme()
+  const isAuthenticated = useAtomValue(isAuthenticatedAtom)
+  const user = useAtomValue(userAtom)
+  const logout = useLogout()
+  const navigate = useNavigate()
 
   const isDark = useMemo(() => theme === 'dark', [theme])
 
+  const handleLogout = () => {
+    logout()
+    navigate({ to: '/' })
+  }
+
   const borderRadius = useTransform(scrollY, [0, 100], [24, 0])
-
-
 
   const borderColor = useTransform(
     scrollY,
@@ -79,12 +89,25 @@ export const Header = () => {
               YourBrand
             </motion.span>
           </motion.div>
-          {/*  тут ссылки */}
-          <motion.div
-            className="flex items-center space-x-3 cursor-pointer group"
-            whileHover={{ scale: 1.11 }}
-            whileTap={{ scale: 0.98 }}
-          >
+          {/* Навигация */}
+          <motion.div className="flex items-center space-x-3">
+            {isAuthenticated ? (
+              <>
+                <span className="text-sm text-muted-foreground">{user?.email}</span>
+                <Button onClick={handleLogout} variant="outline" size="sm">
+                  Выйти
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/login">Войти</Link>
+                </Button>
+                <Button asChild size="sm">
+                  <Link to="/register">Регистрация</Link>
+                </Button>
+              </>
+            )}
             <Button
               className="cursor-pointer"
               onClick={() => {
