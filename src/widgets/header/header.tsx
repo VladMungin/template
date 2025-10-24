@@ -12,8 +12,6 @@ export const Header = () => {
 
   const borderRadius = useTransform(scrollY, [0, 100], [24, 0])
 
-
-
   const borderColor = useTransform(
     scrollY,
     [0, 100],
@@ -90,7 +88,7 @@ export const Header = () => {
               onClick={() => {
                 setTheme(theme === 'dark' ? 'light' : 'dark')
               }}
-              variant="secondary"
+              variant="outline"
             >
               {isDark ? <Sun /> : <Moon />}
             </Button>

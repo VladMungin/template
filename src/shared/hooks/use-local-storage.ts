@@ -21,8 +21,8 @@ export const useLocalStorage = <Value>(
   initialValue?: UseStorageInitialValue<Value>,
   options?: Omit<UseStorageOptions<Value>, 'initialValue' | 'storage'>
 ) =>
-  useStorage(key, {
+  useStorage<Value>(key, {
     ...options,
     initialValue,
-    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+    storage: window.localStorage,
   })

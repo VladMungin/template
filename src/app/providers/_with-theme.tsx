@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect } from 'react'
+import { useLocalStorage } from '@/shared/hooks'
 
-type Theme = 'dark' | 'light' | 'system'
+type Theme = 'dark' | 'light' | 'system' | undefined
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -26,8 +27,9 @@ export function WithTheme({
   storageKey = 'vite-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
+  const { value: theme, set: setTheme } = useLocalStorage<Theme>(
+    'vite-ui-theme',
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   )
 
   useEffect(() => {
@@ -46,19 +48,17 @@ export function WithTheme({
       return
     }
 
-    root.classList.add(theme)
+    root.classList.add(theme || 'dark')
   }, [theme])
 
-  const value = {
-    theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
-    },
-  }
-
   return (
-    <ThemeProviderContext.Provider {...props} value={value}>
+    <ThemeProviderContext.Provider
+      {...props}
+      value={{
+        theme,
+        setTheme,
+      }}
+    >
       {children}
     </ThemeProviderContext.Provider>
   )
