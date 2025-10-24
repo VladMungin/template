@@ -1,4 +1,4 @@
-import { useForm, type SubmitHandler } from 'react-hook-form'
+import { Controller, type SubmitHandler, useForm } from 'react-hook-form'
 import { useRegister } from '../../model'
 import { Button, Input, Spinner } from '@/shared/ui'
 import { useNavigate } from '@tanstack/react-router'
@@ -25,34 +25,35 @@ export function RegisterForm() {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <Input
-        {...form.register('email', {
-          required: 'Email обязателен',
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: 'Некорректный email',
-          },
-        })}
-        type="email"
-        placeholder="Email"
-        disabled={registerMutation.isPending}
+      <Controller
+        render={({ field }) => (
+          <Input
+            {...field}
+            type="email"
+            placeholder="Email"
+            disabled={registerMutation.isPending}
+          />
+        )}
+        name="email"
+        control={form.control}
       />
+
       {form.formState.errors.email && (
         <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>
       )}
-
-      <Input
-        {...form.register('password', {
-          required: 'Пароль обязателен',
-          minLength: {
-            value: 6,
-            message: 'Пароль должен содержать минимум 6 символов',
-          },
-        })}
-        type="password"
-        placeholder="Пароль"
-        disabled={registerMutation.isPending}
+      <Controller
+        render={({field}) => (
+          <Input
+            {...field}
+            type="password"
+            placeholder="Пароль"
+            disabled={registerMutation.isPending}
+          />
+        )}
+        name="password"
+        control={form.control}
       />
+
       {form.formState.errors.password && (
         <p className="text-sm text-destructive">{form.formState.errors.password.message}</p>
       )}

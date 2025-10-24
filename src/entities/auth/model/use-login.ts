@@ -1,21 +1,17 @@
 import { useMutation } from '@tanstack/react-query'
 import { login } from './_request'
-import { useSetAtom } from 'jotai'
-import { userAtom, accessTokenAtom } from './_store'
 import type { LoginRequest } from './_types'
+import { useLocalStorage } from '@/shared/hooks'
+import { useCookies } from 'react-cookie'
 
 export const useLogin = () => {
-  const setUser = useSetAtom(userAtom)
-  const setAccessToken = useSetAtom(accessTokenAtom)
-
+  const { set } = useLocalStorage('user')
+  const [_, setCookie] = useCookies(['accessToken'])
   return useMutation({
     mutationFn: (data: LoginRequest) => login(data),
     onSuccess: response => {
-      setUser(response.user)
-      setAccessToken(response.accessToken)
-      // Сохраняем токен в localStorage
-      localStorage.setItem('accessToken', response.accessToken)
-      localStorage.setItem('user', JSON.stringify(response.user))
+      set(response.user)
+      setCookie('accessToken', response.accessToken)
     },
   })
 }
