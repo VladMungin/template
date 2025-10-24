@@ -3,5 +3,5 @@ interface Env {
 }
 
 export const getEnv = (): Env => ({
-  BASE_URL: import.meta.env.VITE_BASE_URL,
+  BASE_URL: import.meta.env.VITE_BASE_URL || 'https://jsonplaceholder.typicode.com',
 })
